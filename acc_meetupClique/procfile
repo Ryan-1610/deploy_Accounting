@@ -1,0 +1,1 @@
+web: gunicorn acc_meetupClique.wsgi --log-file -

@@ -1,0 +1,113 @@
+<!-- profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1d3557;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        .green_btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .red_btn {
+            background-color: #B8001F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .profile-header {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;            
+        }
+        h2 {
+            margin: 0; 
+        }
+    </style>
+</head>
+<body>
+
+<a class="red_btn" href="backtohomeprofile">Back</a>
+<a class="red_btn" href="logout">Log out</a>
+<div class="form-container">
+    <form method="POST">
+        {% csrf_token %}
+        <br>
+        <div class="profile-header">
+            <h2>Profile Information</h2>
+        </div>
+        <br>
+        <div class="form-group">
+            <br><label for="ID">Student ID:</label>
+            <input type="text" name="ID" id="ID" value="{{ user.StudID }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="name">Student Name:</label>
+            <input type="text" name="name" id="name" value="{{ user.StudName }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="phone" id="phone" value="{{ user.StudPhoneNo }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="Student_status">Student Status:</label>
+            <input type="text" name="Student_status" id="Student_status" value="{{ user.StudStatus }}" disabled>
+        </div><br>
+        <a class="green_btn"  href="Update_profile">Edit Profile</a></br>
+
+        <br><h3>Your Activites :</h3>
+        <div class="profile-header">
+            <a class="green_btn"  href="User_suggestion">Suggestion</a>
+        </div>
+        <br><br><br><br>
+            <a class="red_btn" onclick="confirmDeletion('{{ user.StudID }}'); return false;" href="{% url 'delete_User' user.StudID %}">Delete Account</a>
+    </form>
+</div>
+
+</body>
+    <script>
+        function confirmDeletion(studID) {
+            var confirmation = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+            if (confirmation) {
+                window.location.href = "/Accounting_Society/home/User_profile/delete_User/" + studID;
+            }
+        }
+    </script>
+</html>

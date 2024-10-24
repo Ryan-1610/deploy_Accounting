@@ -1,0 +1,205 @@
+<html>
+    <head>
+        <title>Accounting Associate</title>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Times New Roman', Times, serif;
+                background-color: #f4f4f9;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center the content horizontally */
+            }
+            nav {
+                width: 100%;
+                height: 17%;
+                background-color: #1d3557;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center; /* Center the nav bar */
+                flex-direction: column; /* Stack the items vertically */
+                z-index: 1;
+                transition: all 0.3s ease;
+            }
+            nav img {
+                height: 65px;
+                width: auto; /* Maintain aspect ratio */
+                position: absolute;
+                top: 17px;
+                left: 40px;
+                max-width: 15%; /* Make it responsive */
+            }
+            .hidden { /* Used to hide the navigation bar when scrolling */
+                top: -100px;
+            }
+            nav h1 {
+                color: white;
+                font-size: 32px;
+                margin: 12px 0;
+                margin-top: 9px; /* Move the text higher */
+            }
+            nav ul { /* Center the navigation links */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                list-style: none;
+                padding: 0;
+                margin: 10px; /* Jarakkan Accounting Associate dengan button*/
+                gap: 2rem;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color: #fff;
+                font-size: 18px;
+                font-weight: bold;
+                transition: color 0.3s;
+            }
+            nav ul li .page:hover {
+                color: #f0a500;
+            }
+            .box { /* Styles for the currently active page's box */
+                background-color: #457b9d;
+                color: #fff;
+                border: none;
+                padding: 7px 20px 12px 20px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+            .box:hover { /* Changes the background color when hovered over */
+                background-color: #3e3b26;
+            }
+            .design {
+                margin-bottom: 1px;
+                background-color: #457b9d;
+                padding: 200px 200px;
+                text-align: center;
+                color: #fff;
+            }
+            .design h1 {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
+            .design p {
+                font-size: 20px;
+                max-width: 800px;
+                margin: 0 auto 20px;
+            }
+            .design a {
+                padding: 10px 20px;
+                background-color: #e63946;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                transition: background-color 0.3s;
+            }
+            .design a:hover {
+                background-color: #d62828;
+            }
+            .content {
+                padding: 40px 20px;
+                text-align: center;
+            }
+            .content h2 {
+                font-size: 36px;
+                margin-bottom: 20px;
+                color: #1d3557;
+            }
+            .content p {
+                font-size: 18px;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            footer {
+                background-color: #343a40;
+                color: #fff;
+                text-align: center;
+                padding: 10px;
+                width: 98%; /* Full width */
+                margin-top: auto; /* Push the footer to the bottom */
+                height: auto;
+            }
+            a {
+                text-decoration: none;
+            }
+            .buttonlawa {
+                padding: 10px 20px;
+                text-transform: uppercase;
+                border-radius: 8px;
+                font-size: 17px;
+                font-weight: 500;
+                color: #ffffff80;
+                text-shadow: none;
+                background: transparent;
+                cursor: pointer;
+                box-shadow: transparent;
+                border: 1px solid #ffffff80;
+                transition: 0.5s ease;
+                user-select: none;
+              }
+              .buttonlawa:hover,
+              :focus {
+                color: #ffffff;
+                background: #008cff;
+                border: 1px solid #008cff;
+                text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+                box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+                  0 0 100px #008cff;
+              }
+        </style>
+    </head>
+    <body>
+        <nav id="navbar">
+            {% load static %} 
+            <img src="{% static "Media/KPMB logo.png"%}" alt="KPMB Logo" />  <!-- KPMB Logo -->
+            <h1>Accounting Society</h1>
+            <ul>
+                <!-- Navigation links -->
+                <li><a href="suggestion_list" class="page">Suggestion </a></li>
+                <li><a href="Attendance" class="page">Attendance </a></li>
+                <li><a class="box">Home</a></li>
+                <li><a href="Event" class="page">Event</a></li>
+                <li><a href="User_profile" class="page">Profile </a></li>
+            </ul>
+        </nav>
+        
+        <section class="design">
+            <h1>MAKE UP YOUR ACCOUNTING SKILL</h1>
+            <p>Attend special events with us now! Build your skills and boost your career in the accounting world.</p>
+            <a href="Event" class="buttonlawa">Join Us Now</a>
+        </section>
+
+        <section class="content">
+            <h2>About Us</h2>
+            <p>Welcome to Accounting Associate at Kolej Profesional MARA Beranang. Our mission is to empower future accountants by providing them with the tools and skills they need to succeed in today's fast-changing world.</p>
+        </section>
+
+        <footer>
+            COPYRIGHT &copy; 2024 ACCOUNTING ASSOCIATE MEETUP CLIQUE INC. ALL RIGHTS RESERVED.
+        </footer> 
+        <script>
+            // Hide and show the navigation bar on scroll
+            let lastScrollTop = 0;
+            const navbar = document.getElementById('navbar');
+    
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+                if (scrollTop > lastScrollTop) { // If scrolling down, hide the navbar
+                    navbar.classList.add('hidden');
+                } else { // If scrolling up, show the navbar
+                    navbar.classList.remove('hidden');
+                }
+    
+                lastScrollTop = scrollTop;
+            });
+        </script>
+    </body>
+</html>

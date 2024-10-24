@@ -1,0 +1,104 @@
+<!-- profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 150px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn_logout {
+            background-color: #B8001F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .profile-header {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;            
+        }
+        h2 {
+            margin: 0; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Profile Information</h2><br>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="ID">Student ID:</label>
+            <input type="text" name="ID" id="ID" value="{{ user.StudID }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="{{ user.StudName }}" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="phone" id="phone" value="{{ user.StudPhoneNo }}" required>
+        </div>
+        <div class="form-group">
+            <label for="old_password">Old Password:</label>
+            <input type="password" name="old_password" id="old_password" required>
+        </div>
+        <div class="form-group">
+            <label for="new_password">New Password:</label>
+            <input type="password" name="new_password" id="new_password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm New Password:</label>
+            <input type="password" name="confirm_password" id="confirm_password" required>
+        </div>
+        <div class="profile-header">
+            <a class="btn_logout" href="backEditProfile">Cancel</a>
+            <button type="submit" class="btn" >Save</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

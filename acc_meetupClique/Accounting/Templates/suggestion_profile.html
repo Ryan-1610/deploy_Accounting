@@ -1,0 +1,344 @@
+<html>
+    <head>
+        <title>Accounting Associate</title>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Times New Roman', Times, serif;
+                background-color: #457b9d;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center the content horizontally */
+            }
+            nav {
+                width: 100%;
+                height: 17%;
+                background-color: #1d3557;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                z-index: 1;
+                transition: all 0.3s ease;
+            }
+            nav img {
+                height: 65px;
+                width: auto; /* Maintain aspect ratio */
+                position: absolute;
+                top: 17px;
+                left: 40px;
+                max-width: 15%; /* Make it responsive */
+            }
+            nav h1 {
+                color: white;
+                font-size: 32px;
+                margin: 12px 0;
+                margin-top: 9px;
+            }
+            nav ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                list-style: none;
+                padding: 0;
+                margin: 10px; /* Jarakkan Accounting Associate dengan button*/
+                gap: 2rem;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color:  #fff; /* font colour */
+                font-size: 18px;
+                font-weight: bold;
+                transition: color 0.3s;
+            }
+            nav ul li .page:hover {
+                color: #f0a500;
+            }
+
+            /*------------------Table Style------------------*/
+            .table-container {
+                width: 80%; /* Adjust width for compact look */
+                max-width: 1000px; /* Maximum width for larger screens */
+                margin: 0 auto; /* Center the table horizontally */
+                padding-top: 120px; /* Adds some space under the nav */
+                display: flex;
+                justify-content: center;
+            }
+            
+            table {
+                width: 100%; /* Full width to the container */
+                border-collapse: collapse;
+                background-color: #fff;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            th, td {
+                border: 1px solid #1d3557;
+                padding: 8px;
+                text-align: center;
+            }
+
+            th {
+                cursor: pointer;
+                background-color: #1d3557;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tr:nth-child(odd) {
+                background-color: #ddd;
+            }
+
+            .search-box {
+                margin-bottom: 10px;
+                text-align: right;
+            }
+
+            /* Styling for the footer */
+            footer {
+                background-color: #343a40;
+                color: #fff;
+                text-align: center;
+                padding: 10px;
+                width: 98.3%;
+                height: auto;
+            }
+            a {
+                text-decoration: none;
+            }
+            .red_btn {
+                background-color: #B8001F;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-decoration: none;
+            }
+            button {
+                --button_radius: 0.75em;
+                --button_color: #e8e8e8;
+                --button_outline_color: #000000;
+                --hover_offset: 4px;
+                --active_offset: 2px;
+                --shadow_color: rgba(0, 0, 0, 0.5);
+                --glitch_offset: 2px;
+              
+                font-size: 17px;
+                font-weight: bold;
+                border: none;
+                width: 200px;
+                border-radius: var(--button_radius);
+                background: var(--button_outline_color);
+                position: relative;
+                cursor: pointer;
+                transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+                overflow: hidden;
+              }
+              .button_top {
+                display: block;
+                box-sizing: border-box;
+                border: 5px solid var(--button_outline_color);
+                border-radius: var(--button_radius);
+                padding: 0.75em 1.5em;
+                background: var(--button_color);
+                color: var(--button_outline_color);
+                transform: translateY(-0.2em);
+                transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+              }
+              button:hover {
+                box-shadow: var(--hover_offset) var(--hover_offset) 0 var(--shadow_color);
+                transform: translate(
+                  calc(-1 * var(--hover_offset)),
+                  calc(-1 * var(--hover_offset))
+                );
+              }
+              button:hover .button_top {
+                transform: translateY(-0.33em);
+              }
+              button:active .button_top {
+                transform: translateY(0);
+              }
+              button:active {
+                box-shadow: var(--active_offset) var(--active_offset) 0 var(--shadow_color);
+                transform: translate(
+                  calc(-1 * var(--active_offset)),
+                  calc(-1 * var(--active_offset))
+                );
+              }
+              button:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px var(--button_outline_color),
+                  inset 0 0 0 2px var(--button_color);
+              }
+              button::before,
+              button::after {
+                content: attr(data-content);
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--button_color);
+                color: var(--button_outline_color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+                overflow: hidden;
+                border-radius: var(--button_radius);
+                opacity: 0;
+              }
+              button:active::before,
+              button:active::after {
+                transform: none;
+              }
+              @keyframes brutalistShake {
+                0%,
+                100% {
+                  transform: translateX(0) translateY(0);
+                }
+                25% {
+                  transform: translateX(-2px) translateY(-2px) rotate(-1deg);
+                }
+                75% {
+                  transform: translateX(2px) translateY(2px) rotate(1deg);
+                }
+              }
+              button:hover {
+                animation: brutalistShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+              }
+              
+
+        </style>
+    </head>
+    <body>
+        <nav id="navbar">
+            {% load static %} 
+            <img src="{% static "Media/KPMB logo.png"%}" alt="KPMB Logo" />
+            <h1>Accounting Society</h1>
+            <ul>
+                <li><a href="backEditProfile" class=" red_btn page">Back </a></li> 
+            </ul>
+        </nav>
+
+        <div class="table-container">
+            <div><br><br>
+                <button onclick="window.location.href='{% url 'add_suggestion' %}'">
+                    <span class="button_top" > Add Suggestion </span>
+                </button>
+                {% if data == 1 %}
+                    <div class="search-box">
+                        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for anything..">
+                    </div>
+                    <table id="eventTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)"> SUGGESTION </th>
+                                <th>EDIT SUGGESTION</th>
+                                <th>DELETE SUGGESTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in all_suggestion %}
+                            <tr>
+                                <td>{{data.Details}}</td>
+                                <td>
+                                    {% if data.Details != "" %} 
+                                        <a href="{% url 'update_suggestion_comment' %}?suggestion_id={{ suggestion.SuggestionID }}">Edit Suggestion</a>
+                                    {% else %}
+                                        <span style="color: grey;">Can't Edit</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if data.SuggestionID != ""%}
+                                        <a href="delete_suggestion/{{data.SuggestionID}}">Delete</a>
+                                    {% else %}
+                                        <span style="color: grey;">Can't Delete</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>         
+        <br><br>
+
+        <script>
+
+            function searchTable() {
+                let input, filter, table, tr, td, i, j, txtValue;
+                input = document.getElementById('searchInput');
+                filter = input.value.toUpperCase();
+                table = document.getElementById('eventTable');
+                tr = table.getElementsByTagName('tr');
+            
+                for (i = 1; i < tr.length; i++) {
+                    tr[i].style.display = 'none';
+                    td = tr[i].getElementsByTagName('td');
+                    for (j = 0; j < td.length; j++) {
+                        if (td[j]) {
+                            txtValue = td[j].textContent || td[j].innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = '';
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            function sortTable(n) {
+                let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("eventTable");
+                switching = true;
+                dir = "asc";
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        if (dir === "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir === "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        switchcount++;
+                    } else {
+                        if (switchcount === 0 && dir === "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+
+        </script>
+    </body>
+    <footer><br>
+        COPYRIGHT &copy; 2024 ACCOUNTING ASSOCIATE MEETUP CLIQUE INC. ALL RIGHTS RESERVED.
+    </footer> 
+</html>

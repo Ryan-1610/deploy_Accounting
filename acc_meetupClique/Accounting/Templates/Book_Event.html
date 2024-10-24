@@ -1,0 +1,250 @@
+<html>
+    <head>
+        <title>Accounting Associate</title>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Times New Roman', Times, serif;
+                background-color: #457b9d;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            nav {
+                width: 100%;
+                height: 17%;
+                background-color: #1d3557;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                z-index: 1;
+                transition: all 0.3s ease;
+            }
+            nav img {
+                height: 65px;
+                position: absolute;
+                top: 17px;
+                left: 40px;
+            }
+            nav h1 {
+                color: white;
+                font-size: 32px;
+                margin: 12px 0;
+                margin-top: 9px;
+            }
+            nav ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                list-style: none;
+                padding: 0;
+                margin: 10px;
+                gap: 2rem;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color:  #fff;
+                font-size: 18px;
+                font-weight: bold;
+                transition: color 0.3s;
+            }
+            nav ul li .page:hover {
+                color: #f0a500;
+            }
+            .box {
+                background-color: #457b9d;
+                color: #fff;
+                border: none;
+                padding: 7px 20px 12px 20px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+            .box:hover {
+                background-color: #3e3b26;
+            }
+
+            /*------------------Table Style------------------*/
+            .table-container {
+                width: 80%;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding-top: 120px;
+                display: flex;
+                justify-content: center;
+            }
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background-color: #fff;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            th, td {
+                border: 1px solid #1d3557;
+                padding: 8px;
+                text-align: center;
+            }
+
+            th {
+                cursor: pointer;
+                background-color: #1d3557;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tr:nth-child(odd) {
+                background-color: #ddd;
+            }
+
+            .search-box {
+                margin-bottom: 10px;
+                text-align: right;
+            }
+
+            footer {
+                background-color: #343a40;
+                color: #fff;
+                text-align: center;
+                padding: 10px;
+                width: 100%; /* Fixed footer width */
+                height: auto;
+                margin-top: auto;
+            }
+            a {
+                text-decoration: none;
+            }
+            .red_btn {
+                background-color: #B8001F;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="table-container">
+            <div>
+                <a href="backtohome" class=" red_btn page">Back </a>
+                <h2>Event Booking</h2>
+                <div class="search-box">
+                    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for events..">
+                </div>
+                <table id="eventTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Event ID</th>
+                            <th onclick="sortTable(1)">Staff Incharge</th>
+                            <th onclick="sortTable(2)">Event Name</th>
+                            <th onclick="sortTable(3)">Event Details</th>
+                            <th onclick="sortTable(4)">Event Date</th>
+                            <th onclick="sortTable(5)">Event Time</th>
+                            <th onclick="sortTable(6)">Event Status</th>
+                            <th onclick="sortTable(7)">Join Now</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in all_events %}
+                        <tr>
+                            <td>{{ event.EventID }}</td>
+                            <td>{{ event.StaffID.StaffName }}</td>
+                            <td>{{ event.EventName }}</td>
+                            <td>{{ event.EventDetails }}</td>
+                            <td>{{ event.EventDate }}</td>
+                            <td>{{ event.EventTime }}</td>
+                            <td>{{ event.EventStatus }}</td>
+                            <td>
+                                {% if event.EventID in event_registered_ids %}
+                                    <span style="color: grey;">Already Joined</span>
+                                {% else %}
+                                    <a href="?event_id={{ event.EventID }}">Join</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <script>
+            function searchTable() {
+                let input, filter, table, tr, td, i, j, txtValue;
+                input = document.getElementById('searchInput');
+                filter = input.value.toUpperCase();
+                table = document.getElementById('eventTable');
+                tr = table.getElementsByTagName('tr');
+            
+                for (i = 1; i < tr.length; i++) {
+                    tr[i].style.display = 'none';
+                    td = tr[i].getElementsByTagName('td');
+                    for (j = 0; j < td.length; j++) {
+                        if (td[j]) {
+                            txtValue = td[j].textContent || td[j].innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = '';
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            function sortTable(n) {
+                let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("eventTable");
+                switching = true;
+                dir = "asc";
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        if (dir === "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir === "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        switchcount++;
+                    } else {
+                        if (switchcount === 0 && dir === "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
+    <footer>
+        COPYRIGHT &copy; 2024 ACCOUNTING ASSOCIATE MEETUP CLIQUE INC. ALL RIGHTS RESERVED.
+    </footer>
+</html>

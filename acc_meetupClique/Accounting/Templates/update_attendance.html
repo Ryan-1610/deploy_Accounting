@@ -1,0 +1,73 @@
+<html>
+<head>
+    <title>Update Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #457b9d;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .update-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #534f2d;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1d3557;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3e3b26;
+        }
+    </style>
+</head>
+<body>
+    <div class="update-container">
+        <h2>Update Attendance Status</h2>
+        <!-- Form to update attendance -->
+        <form action="{% url 'update_attendance_status' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="event_id" value="{{ event_id }}">
+            <div class="form-group">
+                <label for="attendance-status">Attendance Status</label>
+                <select id="attendance-status" name="attendance_status">
+                    <option value="Attended" {% if current_status == 'Attended' %} selected {% endif %}>Attended</option>
+                    <option value="Attend" {% if current_status == 'Attend' %} selected {% endif %}>Attending</option>
+                    <option value="MC" {% if current_status == 'MC' %} selected {% endif %}>Medical Certificate (MC)</option>
+                </select>
+            </div>
+            <button type="submit">Update Status</button>
+        </form>
+    </div>
+</body>
+</html>

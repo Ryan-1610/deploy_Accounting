@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Suggestion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #457b9d;
+            padding: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            height: 100px; /* Set a height for the textarea */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1d3557;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3e3b26;
+        }
+    </style>
+</head>
+<body>
+    <h2>Add Your Suggestion</h2>
+    <form action="{% url 'add_suggestion' %}" method="post">
+        {% csrf_token %}
+        
+        <label for="details">Suggestion:</label><br>
+        <textarea id="details" name="details" maxlength="1000" required></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
+

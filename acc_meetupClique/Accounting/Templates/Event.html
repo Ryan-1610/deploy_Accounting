@@ -1,0 +1,398 @@
+<html>
+<head>
+    <title>Event Booking Service</title>
+    <style>
+        /* General styling for the body */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #ffffff;
+            color: #8C895F;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the content horizontally */
+        }
+        nav {
+            width: 100%;
+            height: 17%;
+            background-color: #1d3557;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        nav img {
+            height: 65px;
+            width: auto; /* Maintain aspect ratio */
+            position: absolute;
+            top: 17px;
+            left: 40px;
+            max-width: 15%; /* Make it responsive */
+        }
+        nav h1 {
+            color: white;
+            font-size: 32px;
+            margin: 12px 0;
+            margin-top: 9px;
+        }
+        .hidden { /* Used to hide the navigation bar when scrolling */
+            top: -100px;
+        }
+        nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 10px; /* Jarakkan Accounting Associate dengan button*/
+            gap: 2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color:  #fff; /* font colour */
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li .page:hover {
+            color: #f0a500;
+        }
+        .box {
+            background-color: #457b9d;
+            color: #fff;
+            border: none;
+            padding: 7px 20px 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .box:hover {
+            background-color: #3e3b26;
+        }
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        .Event {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: calc(33% - 40px);
+            box-sizing: border-box;
+        }
+        .Event:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .Event img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+        /* Styling for section titles */
+        h2 {
+            border-bottom: 2px solid #343a40;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #000000;
+            font-size: 25px;
+        }
+        /* General paragraph styling */
+        p {
+            line-height: 1.6;
+        }
+        /* Styling for the footer */
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 98.3%;
+            height: auto;
+        }
+        .joinnow {
+            background-color: #fffb00;
+            color: #343a40;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 600;
+            font-family: monospace;
+        }
+        .btn:hover.joinnow {
+            background-color: #b4b235;
+        }
+        h1 {
+            font-size: medium;
+            font-weight: bold;
+        }
+        /* Hidden by default */
+        .more-info {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            text-align: left;
+        }
+        a {
+            text-decoration: none;
+        }
+        .red_btn {
+            background-color: #B8001F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        {% load static %} 
+        <img src="{% static "Media/KPMB logo.png"%}" alt="KPMB Logo" />
+        <h1>Accounting Society</h1>
+        <ul>
+            <li><a href="backtohome" class=" red_btn page">Back </a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- Section for upcoming event -->
+        <section>
+            <h1></h1></br></br>
+            </br><h2>Upcoming Accounting MeetUp Event | 24/25 </h2>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Excel for accountant.png"%}" alt="home" /> 
+                
+                <p><h1>Excel for Accountants</br>(Workshop on Excel skills for accounting)</h1></p>
+                <p>25-11-2024</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Financial planning.png"%}" alt="home" /> 
+
+                <p><h1>Financial Study Group </br>(Group session on Financial )</h1></p>
+                <p>22-01-2025</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Budgeting workshop.png"%}" alt="home" /> 
+                
+                <p><h1>Budgeting Workshop </br>(Budgeting and planning techniques)</h1></p>
+                <p>05-02-2025</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Tax workshop.png"%}" alt="home" /> 
+                
+                <p><h1>Tax Workshop </br>(Corporate tax accounting for beginners)</h1></p>
+                <p>05-03-2025</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Financial modelling.png"%}" alt="home" /> 
+                
+                <p><h1>Financial Modelling </br>(Introduction to financial modeling)</h1></p>
+                <p>28-04-2025</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Taxation law updates.png"%}" alt="home" /> 
+                
+                <p><h1>Taxation Law Updates </br>(Updates on Malaysian taxation laws)</h1></p>
+                <p>31-05-2025</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Ethics in accounting.png"%}" alt="home" /> 
+                
+                <p><h1>Ethics in Accounting </br>(Ethics and professional in accounting)</h1></p>
+                <p>21-06-2025</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Accounting system.png"%}" alt="home" /> 
+                
+                <p><h1>Accounting Systems </br>(Overview of popular accounting software)</h1></p>
+                <p>09-08-2025</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static "Media/Leadership finance.png"%}" alt="home" /> 
+                
+                <p><h1>Leadership in Finance </br>(Workshop on leadership skills in the finance field)</h1></p>
+                <p>15-10-2025</p>
+                <a href="event_booking" class="btn joinnow"> Join us Now !! </a>
+            </div>
+        </section>
+
+        <section>
+            <h1></h1><br>
+            <h2>Completed Accounting MeetUp Event | 2024</h2>
+        
+            <!-- Guest Lecture Event -->
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static 'Media/Guest lecture.png' %}" alt="Guest Lecture" /> 
+                <h1>Guest Lecture <br>(Completed)</h1>
+                <p>30-10-2024</p>
+                <button onclick="toggleInfo('moreInfo1')" class="btn joinnow">See Feedback</button>
+                
+                <!-- Hidden content to display when button is clicked -->
+                <div id="moreInfo1" class="more-info" style="display:none;">
+                    <table>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                        </tr>
+                        {% for feedback in all_feedback %}
+                            {% if feedback.EventID == "E2410" %}
+                                <tr>
+                                    <td><p>{{ feedback.StudID.StudName }} - {{ feedback.StarRating }} - {{ feedback.Comment }}</p></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Audit Case Study Event -->
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static 'Media/Audit case study.png' %}" alt="Audit Case Study" /> 
+                <h1>Audit Case Study <br>(Completed)</h1>
+                <p>12-08-2024</p>
+                <button onclick="toggleInfo('moreInfo2')" class="btn joinnow">See Feedback</button>
+                
+                <!-- Hidden content to display when button is clicked -->
+                <div id="moreInfo2" class="more-info" style="display:none;">
+                    <table>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                        </tr>
+                        {% for feedback in all_feedback %}
+                            {% if feedback.EventID == "E2408" %}
+                                <tr>
+                                    <td><p>{{ feedback.StudID.StudName }} - {{ feedback.StarRating }} - {{ feedback.Comment }}</p></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Financial Reporting Event -->
+            <div class="Event">
+                {% load static %} 
+                <img src="{% static 'Media/Financial reporting.png' %}" alt="Financial Reporting" /> 
+                <h1>Financial Reporting <br>(Completed)</h1>
+                <p>10-02-2024</p>
+                <button onclick="toggleInfo('moreInfo3')" class="btn joinnow">See Feedback</button>
+                
+                <!-- Hidden content to display when button is clicked -->
+                <div id="moreInfo3" class="more-info" style="display:none;">
+                    <table>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                        </tr>
+                        {% for feedback in all_feedback %}
+                            {% if feedback.EventID == "E2402" %}
+                                <tr>
+                                    <td><p>{{ feedback.StudID.StudName }} - {{ feedback.StarRating }} - {{ feedback.Comment }}</p></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer section -->
+    <footer>
+        COPYRIGHT &copy; 2024 ACCOUNTING ASSOCIATE MEETUP CLIQUE INC. ALL RIGHTS RESERVED.
+    </footer>   
+    <script>
+        // Function to change the image source on hover
+        function show(id, img) {
+            var x = document.getElementById(id);
+            x.setAttribute("src", img);
+            return;
+        }
+        // Function to toggle visibility of more information
+        function toggleInfo(id) {
+            var info = document.getElementById(id);
+            if (info.style.display === "none") {
+                info.style.display = "block";
+            } else {
+                info.style.display = "none";
+            }
+        }
+            // Hide and show the navigation bar on scroll
+            let lastScrollTop = 0;
+            const navbar = document.getElementById('navbar');
+    
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+                if (scrollTop > lastScrollTop) { // If scrolling down, hide the navbar
+                    navbar.classList.add('hidden');
+                } else { // If scrolling up, show the navbar
+                    navbar.classList.remove('hidden');
+                }
+    
+                lastScrollTop = scrollTop;
+            });
+
+    </script>
+</body>
+</html>
